@@ -31,3 +31,15 @@ def plot_indicator_trend(df, indicator_name, title="Indicator Trend"):
         plt.show()
     except Exception as e:
         print(f"❌ Error during plotting: {e}")
+
+    
+
+
+def apply_impact(base_value, impact_magnitude, direction='positive'):
+    """
+    Calculates the new value after an event happens.
+    """
+    if direction == 'positive':
+        return base_value * (1 + impact_magnitude)
+    else:
+        return base_value * (1 - impact_magnitude)
