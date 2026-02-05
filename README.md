@@ -1,32 +1,52 @@
 Forecasting Financial Inclusion in Ethiopia
 
-10 Academy – AI Mastery | Week 10 Challenge
+10 Academy – Artificial Intelligence Mastery | Week 10 Challenge
 
 📌 Project Overview
 
-This project focuses on analyzing and forecasting financial inclusion in Ethiopia using time series data, event analysis, and exploratory data analysis (EDA).
+Ethiopia is experiencing rapid growth in digital financial services driven by mobile money platforms such as Telebirr and M-Pesa, regulatory reforms, and digital infrastructure expansion. However, despite this growth, overall financial inclusion—especially formal account ownership—has recently stagnated.
 
-Financial inclusion is measured using the World Bank Global Findex framework, which defines two core dimensions:
+This project was conducted on behalf of a consortium of stakeholders, including:
 
-Access – Account Ownership Rate
+Development Finance Institutions (DFIs) – to evaluate whether digital finance expansion is translating into real inclusion outcomes and to guide investment priorities.
 
-Usage – Digital Payment Adoption Rate
+Mobile Network Operators (MNOs) – to understand the gap between registered users and active financial participation.
 
-Ethiopia has experienced rapid growth in digital financial services (e.g., Telebirr, M-Pesa), yet overall financial inclusion growth has recently slowed. This project aims to understand why, identify key drivers, and prepare the ground for forecasting future trends.
+National Bank of Ethiopia (NBE) – to assess policy effectiveness, guide regulatory decisions, and track progress toward national financial inclusion targets.
 
-🎯 Project Objectives
+The goal is to build a data-driven forecasting system that explains past trends, models policy and market impacts, and forecasts Ethiopia’s financial inclusion trajectory for 2025–2027.
 
-By completing Tasks 1 and 2, this project aims to:
+🎯 Core Objectives
 
-Understand the structure and limitations of the provided unified dataset
+Build a unified dataset combining financial indicators, national events, and policy targets
 
-Enrich the dataset with additional relevant financial inclusion data
+Analyze historical trends in financial access and usage
 
-Explore historical trends in financial access and usage
+Model how events (policies, product launches, infrastructure) affect inclusion outcomes
 
-Identify patterns, gaps, and potential drivers of financial inclusion in Ethiopia
+Forecast financial inclusion for 2025–2027 under multiple scenarios
 
-Generate insights that will inform later event-impact modeling and forecasting
+Present insights through an interactive dashboard for decision-makers
+
+🌍 Financial Inclusion Framework
+
+The project follows the World Bank Global Findex definitions:
+
+🔹 Access – Account Ownership
+
+Percentage of adults (15+) who:
+
+Have an account at a bank or financial institution, or
+
+Personally used a mobile money service in the past 12 months
+
+🔹 Usage – Digital Payments
+
+Percentage of adults who:
+
+Made or received digital payments
+
+Used mobile money, cards, or internet-based payments
 
 🗂️ Repository Structure
 ethiopia-fi-forecast/
@@ -35,122 +55,183 @@ ethiopia-fi-forecast/
 │   ├── raw/
 │   │   ├── ethiopia_fi_unified_data.csv
 │   │   └── reference_codes.csv
-│   ├── processed/
+│   └── processed/
 │
 ├── notebooks/
 │   ├── task_1_data_exploration.ipynb
 │   ├── task_2_eda.ipynb
+│   ├── task_3_impact_modeling.ipynb
+│   └── task_4_forecasting.ipynb
+│
+├── src/
+│   ├── __init__.py
+│   └── utils.py
+│
+├── dashboard/
+│   └── app.py
 │
 ├── reports/
 │   ├── data_enrichment_log.md
+│   └── figures/
 │
-├── src/
 ├── tests/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
 
-📁 Dataset Description
-
-The project uses a unified schema dataset, where all records share the same structure and are differentiated using the record_type field.
-
-Record Types
-
-observation – Measured indicators (e.g., account ownership, mobile money usage)
-
-event – Policies, product launches, infrastructure developments
-
-impact_link – Modeled relationships between events and indicators
-
-target – Official policy targets (e.g., NFIS goals)
-
-This design avoids bias by not pre-assigning events to financial inclusion pillars.
-
-✅ Task 1: Data Exploration and Enrichment
+✅ Task 1: Data Exploration & Enrichment
 Objective
 
-To understand the starter dataset and enrich it with additional relevant data needed for forecasting financial inclusion.
+To construct a unified dataset that integrates:
+
+Historical indicators (observations)
+
+Major national milestones (events)
+
+Logical cause-effect relationships (impact links)
 
 Key Activities
 
-Explored the unified data schema and reference codes
+Explored the unified schema and reference codes
 
-Analyzed record distribution by:
+Reviewed record distribution by type, pillar, and confidence level
 
-record type
+Identified temporal and indicator coverage gaps
 
-pillar
+Enriched the dataset with recent and relevant data
 
-source type
+Key Data Additions
 
-confidence level
+2025 Mobile Money Accounts: 139.5M registered accounts (NBE)
 
-Identified temporal coverage and data gaps
+Fayda Digital ID: 33M+ registrations as a structural enabler
 
-Added new records including:
+Mandatory Fuel Digitization (2024): Policy forcing digital payments
 
-Additional observations (financial inclusion indicators, infrastructure data)
-
-Additional events (policy changes, product launches, market milestones)
-
-New impact links connecting events to indicators
+Added impact links connecting policies to access and usage indicators
 
 Outputs
 
-Updated unified dataset following the original schema
+Enriched unified dataset
 
-data_enrichment_log.md documenting:
-
-Data sources
-
-Confidence levels
-
-Rationale for inclusion
-
-Clean commits and branch management using GitHub
+data_enrichment_log.md documenting sources, confidence, and rationale
 
 📊 Task 2: Exploratory Data Analysis (EDA)
 Objective
 
-To analyze historical trends and identify factors influencing financial inclusion in Ethiopia.
+To understand historical patterns, structural bottlenecks, and early signals driving financial inclusion trends.
 
-Key Analyses
-1. Dataset Overview
+Key Findings
 
-Summary by record type, pillar, and source
+Stagnation Mystery: Account ownership grew only +3pp (46% → 49%) between 2021–2024 despite massive mobile money growth.
 
-Confidence level distribution
+Registration Gap: Over 130M mobile money accounts vs. only 49% reported ownership.
 
-Identification of sparse indicators
+Digital Leadership: Digital P2P transfers now exceed ATM cash withdrawals.
 
-2. Access (Account Ownership)
+Policy Impact: Mandatory fuel digitization caused visible usage spikes.
 
-Visualization of account ownership trends (2011–2024)
+Gender Gap: Men remain significantly more likely to own accounts than women.
 
-Growth rate analysis between survey years
+Outputs
 
-Investigation of the slowdown between 2021 and 2024
+EDA notebook with visualizations
 
-Gender and urban–rural comparisons (where data permits)
+Summary of key insights and data limitations
 
-3. Usage (Digital Payments)
+🔗 Task 3: Event Impact Modeling
+Objective
 
-Mobile money adoption trends
+To model how and why events change financial inclusion indicators.
 
-Digital payment usage patterns
+Approach
 
-Comparison between registered and active usage
+Used impact_link records to define:
 
-4. Infrastructure & Enablers
+Impact direction (positive/negative)
 
-Analysis of infrastructure indicators (e.g., mobile coverage, agent density)
+Impact magnitude (elasticity)
 
-Identification of leading indicators for financial inclusion
+Time delay (lag)
 
-5. Event Timeline Analysis
+Built an event–indicator association matrix
 
-Visualization of key events over time
+Used comparable-country evidence where Ethiopian data was limited
 
-Overlay of events on inclusion indicators
+Outputs
 
-Preliminary insights into event-indicator relationships
+Impact modeling notebook
+
+Event–indicator matrix (table/heatmap)
+
+Documented assumptions and uncertainty
+
+🔮 Task 4: Forecasting Financial Inclusion (2025–2027)
+Objective
+
+To project future access and usage trends under uncertainty.
+
+Methodology
+
+Combined:
+
+Historical trends
+
+Event-driven impacts
+
+Generated three scenarios:
+
+Baseline
+
+Optimistic
+
+Pessimistic
+
+Included confidence intervals and scenario ranges
+
+Outputs
+
+Forecast tables and visualizations
+
+Scenario comparison charts
+
+Written policy-relevant interpretation
+
+🖥️ Task 5: Dashboard Development
+Objective
+
+To communicate insights and forecasts through an interactive interface.
+
+Features
+
+Built using Streamlit
+
+Pages include:
+
+Overview (key metrics & trends)
+
+Trends (interactive time series)
+
+Events (timeline overlays)
+
+Forecasts (scenario selection & confidence intervals)
+
+Data download functionality included
+
+Output
+
+Fully functional interactive dashboard (dashboard/app.py)
+
+⚠️ Data Limitations
+
+Sparse Time Series: Findex surveys every 3 years
+
+Limited Regional Data: Incomplete rural vs. urban breakdown for 2024
+
+Confidence Levels: Some event impacts marked Medium Confidence pending official updates
+
+All limitations are explicitly documented and incorporated into uncertainty estimates.
+
+🏁 Conclusion
+
+This project demonstrates that Ethiopia’s financial inclusion challenge has shifted from access expansion to meaningful usage, trust, infrastructure readiness, and gender equity. By integrating data, events, and policy logic, the system provides forward-looking insights to support regulatory planning, investment decisions, and inclusive digital finance strategies for 2025–2027.
